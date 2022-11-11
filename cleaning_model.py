@@ -69,6 +69,9 @@ class CleaningModel(mesa.Model):
         self.celdas_lim = self.celdas_lim + 1
         if self.celdas_suc == 0:
             self.final_time = 5
+
+    def total_movimientos(self):
+        pass
 '''
 def inicializarEspacio(modelo):
     grid = np.zeros((modelo.grid.width, modelo.grid.height))
