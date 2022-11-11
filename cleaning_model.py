@@ -1,6 +1,5 @@
 import mesa
 import random
-# Definimos los siguientes paquetes para manejar valores númericos: 'numpy' & 'pandas'
 import numpy as np
 import pandas as pd
 
