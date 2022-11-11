@@ -3,4 +3,4 @@
 Juan Daniel Rodríguez Oropeza A01411625
 
 
-**No he podido terminar la actividad todavía.**
+**Todavía NO he podido terminar la actividad.**
