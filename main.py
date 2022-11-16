@@ -1,30 +1,25 @@
-import cleaning_model as CleaningModel
-import matplotlib.pyplot as plt
+# M1. Actividad
+# Juan Daniel Rodríguez Oropeza A01411625
+
+from cleaning_model import CleaningModel
 
 # Dimensiones del espacio
-M = 10
-N = 10
+M = int(input("Introduce el valor de M: "))
+N = int(input("Introduce el valor de N: "))
 
-CANT_AGENTES = 3 # Cantidad de agentes
+CANT_AGENTES = int(input("Introduce la cantidad de agentes: ")) # Cantidad de agentes
 
-P_SUCIAS = 0.6 # Porcentaje de celdas que regularmente están sucias
+PORCENTAJE_SUCIAS = float(input("Introduce el porcentaje inicial de celdas sucias: ")) # Porcentaje de celdas que inicialmente están sucias
 
-TIEMPO_MAX = 2 # Tiempo máximo de ejecución del algoritmo
-
-# Nivel de carga máximo de los agentes. Puede ser en porcentaje o en unidades de carga
-CARGA_MAX = 100
+TIEMPO_MAX = int(input("Introduce el tiempo máximo de ejecución (segundos): ")) # Tiempo máximo de ejecución del algoritmo
 
 def basic_example():
-    # empty_model = MoneyModel(10)
-    # empty_model.step()
-
-    model = CleaningModel(10)
-    for i in range(10):
+    model = CleaningModel(CANT_AGENTES, N, M, PORCENTAJE_SUCIAS, TIEMPO_MAX)
+    while (model.celdas_suc > 0):
         model.step()
-        print("\n")
+        print("Porcentaje de celdas limpias:", model.porcentaje_celdas_limpias())
 
-    agent_counter = [a.counter for a in model.schedule.agents]
-    print(agent_counter)
+    print("Cantidad total de movimientos por todos los agentes:", model.total_movimientos())
+    print("Tiempo total:", model.final_time)
 
-    plt.hist(agent_counter)
-    plt.show()
+basic_example()
