@@ -1,2 +1,5 @@
 *.xml
-*
+/.DS_Store
+/__pycache__
+/virtual
+.idea/M1.-Actividad.iml

@@ -1,11 +1,12 @@
 # M1. Actividad
 # Juan Daniel Rodríguez Oropeza A01411625
+import time
 
 from cleaning_model import CleaningModel
 
 # Dimensiones del espacio
-M = int(input("Introduce el valor de M: "))
-N = int(input("Introduce el valor de N: "))
+M = int(input("Introduce el valor de M: ")) # alto
+N = int(input("Introduce el valor de N: ")) # ancho
 
 CANT_AGENTES = int(input("Introduce la cantidad de agentes: ")) # Cantidad de agentes
 
@@ -15,7 +16,7 @@ TIEMPO_MAX = int(input("Introduce el tiempo máximo de ejecución (segundos): ")
 
 def basic_example():
     model = CleaningModel(CANT_AGENTES, N, M, PORCENTAJE_SUCIAS, TIEMPO_MAX)
-    while (model.celdas_suc > 0):
+    while (model.celdas_suc > 0 and ((time.time() - model.init_time) < model.final_time)):
         model.step()
         print("Porcentaje de celdas limpias:", model.porcentaje_celdas_limpias())
 

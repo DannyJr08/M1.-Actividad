@@ -23,14 +23,14 @@ class CleaningAgent(mesa.Agent):
         new_position = self.random.choice(possible_steps) # El agente escoge una posición
         self.model.grid.move_agent(self, new_position) # El agente se coloca en su nueva posición.
         self.counter = self.counter + 1 # Aumenta el contador de pasos.
-        #print("Yo:", self.unique_id, " me he movido a la casilla", new_position)
+        print("Yo:", self.unique_id, " me he movido a la casilla", new_position)
 
     # Función que hace que el agente limpie la casilla en caso de que esté sucia
     def clean(self):
         # Si está sucia la casilla en la que se encuentra el agente limpiador, la limpia
         if not self.model.estaLimpio(self.pos):
             self.model.cambiarLimpio(self.pos)
-            #print("Limpié la celda: ", self.pos)
+            print("Limpié la celda: ", self.pos)
 
 
 class CleaningModel(mesa.Model):
@@ -39,8 +39,7 @@ class CleaningModel(mesa.Model):
         self.num_agents = N
         #print("Numero de agentes:", self.num_agents)
         self.schedule = mesa.time.RandomActivation(self)
-        self.grid = mesa.space.MultiGrid(width, height, True)
-        self.schedule = mesa.time.RandomActivation(self)
+        self.grid = mesa.space.MultiGrid(height, width, True)
         self.init_time = time.time()
         self.final_time = tiempo_max
         self.total_mov = 0
@@ -48,18 +47,18 @@ class CleaningModel(mesa.Model):
         # Inicializar matriz aleatoriamente
         self.celdas_suc = int((width * height) * percent)
         self.celdas_lim = int((width * height) * (1 - percent))
-        self.dirty_matrix = [([True]*height) for i in range(width)] # Al principio todas las celdas se inicializan como Verdadero, es decir, que están limpias
+        self.dirty_matrix = [([True]*width) for i in range(height)] # Al principio todas las celdas se inicializan como Verdadero, es decir, que están limpias
         self.cant_celdas_suc_inicializar = self.celdas_suc
         #print("celda suc", self.cant_celdas_suc_inicializar)
         while (self.cant_celdas_suc_inicializar > 0): # Cuando ya no queden celdas por inicializar a sucias (False)
             # Se recorren todas las celdas de la matriz.
-            for i in range(width):
-                for j in range(height):
+            for i in range(height):
+                for j in range(width):
                     sucio_o_limpio = random.randint(0, 1) # Se decide aleatoriamente si la celda actual permancerá limpia o se cambiará a sucia
-                    if sucio_o_limpio == 0 and self.cant_celdas_suc_inicializar > 0 and self.dirty_matrix[i][j]: # Si la celda se decide que será sucia y la celda está limpia, y además, aún quedan celdas por inciializar a sucias...
+                    if self.cant_celdas_suc_inicializar > 0 and self.dirty_matrix[i][j]: # Si la celda se decide que será sucia y la celda está limpia, y además, aún quedan celdas por inciializar a sucias...
                         self.dirty_matrix[i][j] = False # La celda se
                         self.cant_celdas_suc_inicializar -= 1
-                        #print("Celda cambiada", i, j ,"a", self.dirty_matrix[i][j])
+                        print("Celda cambiada", i, j ,"a", self.dirty_matrix[i][j])
                         #print("Ahora quedan por cambiar", self.cant_celdas_suc_inicializar)
             #print("cant celdas suc", self.cant_celdas_suc_inicializar)
 
