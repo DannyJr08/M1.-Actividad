@@ -5,8 +5,8 @@ import time
 from cleaning_model import CleaningModel
 
 # Dimensiones del espacio
-M = int(input("Introduce el valor de M: ")) # alto
-N = int(input("Introduce el valor de N: ")) # ancho
+M = int(input("Introduce el valor de M (altura de la matriz o número filas): ")) # altura
+N = int(input("Introduce el valor de N (ancho de la matriz o número de columnas): ")) # ancho
 
 CANT_AGENTES = int(input("Introduce la cantidad de agentes: ")) # Cantidad de agentes
 
@@ -26,6 +26,6 @@ def basic_example():
         print("\n=================================================\n")
 
     print("Cantidad total de movimientos por todos los agentes:", model.total_movimientos())
-    print("Tiempo total:", model.final_time)
+    print("Tiempo total:", model.final_time, "segundos")
 
 basic_example()
