@@ -6,7 +6,6 @@ class CleaningAgent(mesa.Agent):
     # Se inicializa un agente.
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
-        self.counter = 0  # Contador de pasos
 
     # Función que ejecuta el agente al moverse
     def step(self):
@@ -22,15 +21,14 @@ class CleaningAgent(mesa.Agent):
             include_center=False)
         new_position = self.random.choice(possible_steps) # El agente escoge una posición
         self.model.grid.move_agent(self, new_position) # El agente se coloca en su nueva posición.
-        self.counter = self.counter + 1 # Aumenta el contador de pasos.
-        print("Yo:", self.unique_id, " me he movido a la casilla", new_position)
+        #print("Yo:", self.unique_id, " me he movido a la casilla", new_position)
 
     # Función que hace que el agente limpie la casilla en caso de que esté sucia
     def clean(self):
         # Si está sucia la casilla en la que se encuentra el agente limpiador, la limpia
         if not self.model.estaLimpio(self.pos):
             self.model.cambiarLimpio(self.pos)
-            print("Limpié la celda: ", self.pos)
+            #print("Limpié la celda: ", self.pos)
 
 
 class CleaningModel(mesa.Model):
@@ -58,7 +56,7 @@ class CleaningModel(mesa.Model):
                     if self.cant_celdas_suc_inicializar > 0 and self.dirty_matrix[i][j]: # Si la celda se decide que será sucia y la celda está limpia, y además, aún quedan celdas por inciializar a sucias...
                         self.dirty_matrix[i][j] = False # La celda se
                         self.cant_celdas_suc_inicializar -= 1
-                        print("Celda cambiada", i, j ,"a", self.dirty_matrix[i][j])
+                        #print("Celda cambiada", i, j ,"a", self.dirty_matrix[i][j])
                         #print("Ahora quedan por cambiar", self.cant_celdas_suc_inicializar)
             #print("cant celdas suc", self.cant_celdas_suc_inicializar)
 
