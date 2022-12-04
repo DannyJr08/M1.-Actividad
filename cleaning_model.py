@@ -28,7 +28,7 @@ class CleaningAgent(mesa.Agent):
         # Si está sucia la casilla en la que se encuentra el agente limpiador, la limpia
         if not self.model.estaLimpio(self.pos):
             self.model.cambiarLimpio(self.pos)
-            #print("Limpié la celda: ", self.pos)
+            print("Limpié la celda: ", self.pos, "\n")
 
 
 class CleaningModel(mesa.Model):

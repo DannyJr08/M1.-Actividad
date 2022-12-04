@@ -6,7 +6,14 @@ from cleaning_model import CleaningModel
 
 # Dimensiones del espacio
 M = int(input("Introduce el valor de M (altura de la matriz o número filas): ")) # altura
+while (M < 2):
+    print("La matriz debe tener al menos dos filas.")
+    M = int(input("Introduce el valor de M (altura de la matriz o número filas): "))  # altura
+
 N = int(input("Introduce el valor de N (ancho de la matriz o número de columnas): ")) # ancho
+while (N < 2):
+    print("La matriz debe tener al menos dos columnas.")
+    N = int(input("Introduce el valor de N (ancho de la matriz o número de columnas): ")) # ancho
 
 CANT_AGENTES = int(input("Introduce la cantidad de agentes: ")) # Cantidad de agentes
 
